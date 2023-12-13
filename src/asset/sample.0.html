@@ -1,0 +1,99 @@
+<div class="amazon-affiliate-link-maker" style="font-size:{{font_size}};color:black;background-color:white;">
+  <div class="flex">
+    <div class="main-image"><a href="{{affiliate_url}}"><img width="{{img_size}}" src="{{src}}"></a></div>
+    <div class="info">
+      <div class="category"><p>{{category}}</p></div>
+      <a class="title" href="{{affiliate_url}}">{{title}}</a>
+      <p class="seller">販売 : <a href="{{seller_url}}" target="_blank">{{seller_name}}</a></p>
+      <p class="price">{{unit}} {{price}}</p>
+    </div>
+  </div>
+  <ul class="thumbs">{{thumbs}}</ul>
+</div>
+<style>
+.amazon-affiliate-link-maker{
+  display: flex;
+  gap: 10px;
+  flex-direction:column;
+  padding:10px;
+}
+.amazon-affiliate-link-maker .flex{
+  display:flex;
+  gap:10px;
+}
+.amazon-affiliate-link-maker a{
+  text-decoration:none;
+  color:black;
+}
+.amazon-affiliate-link-maker img{
+  object-fit:contain;
+  max-height:{{size}}px;
+}
+.amazon-affiliate-link-maker .info{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+.amazon-affiliate-link-maker .info > *{
+  margin:0;
+  padding:0;
+}
+.amazon-affiliate-link-maker .info .category *{
+  display:inline-block;
+  background-color:black;
+  color:white;
+  margin-right:5px;
+  margin-bottom:5px;
+  font-size:10px;
+  padding:3px;
+}
+.amazon-affiliate-link-maker .info .title{
+  font-size:1.1em;
+  font-weight:bold;
+}
+.amazon-affiliate-link-maker .info .prime-badge[data-prime-badge="true"]::before{
+  content:"Prime";
+  font-weight:bold;
+  font-size:0.9em;
+}
+.amazon-affiliate-link-maker .info .seller{
+  margin:10px 0;
+}
+.amazon-affiliate-link-maker .info .price{
+  font-size:1.2em;
+  font-weight:bold;
+}
+.amazon-affiliate-link-maker .thumbs{
+  display:flex;
+  gap:10px;
+  margin:0;
+  padding:0;
+  overflow:auto;
+}
+.amazon-affiliate-link-maker .thumbs > *{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.amazon-affiliate-link-maker .thumbs img{
+  width:4em;
+  height:4em;
+  object-fit:cover;
+  cursor:pointer;
+  border:1px solid black;
+  border-radius:5px;
+}
+.amazon-affiliate-link-maker .thumbs:empty,
+.amazon-affiliate-link-maker .info .category:empty,
+.amazon-affiliate-link-maker .info .prime-badge[data-prime-badge="false"]{
+  display:none;
+}
+@media (max-width:500px){
+  .amazon-affiliate-link-maker .flex{
+    flex-direction:column;
+  }
+  .amazon-affiliate-link-maker .main-image{
+    text-align:center;
+  }
+}
+</style>

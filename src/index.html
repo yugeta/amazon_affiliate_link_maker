@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon affiriate link maker</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXJDSG5CQ0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ZXJDSG5CQ0');
+  </script>
+
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <link rel="shortcut icon" type="image/svg+xml" href="img/amazon.svg">
+  <link rel="apple-touch-icon" href="page/common/img/favicon.png" />
+  <meta name="apple-mobile-web-app-title" content="Amazon affiriate link maker">
+  <link rel="mask-icon" href="age/common/img/favicon.svg" type="image/svg+xml" color="white" />
+
+  <link rel='stylesheet' href='css/style.css'/>
+  <script type='module' src='js/main.js'></script>
+  
+</head>
+<body>
+  <!-- <h1>Amazon affiriate Link maker</h1> -->
+  <header>
+    <h1 hidden><a href="./">Amazon affiriate Link maker (ver.α)</a></h1>
+  </header>
+
+  <section class="banner">
+    <img src="img/banner.png"/>
+  </section>
+
+  <main>
+    <section class="control">
+      <h2>設定</h2>
+      <input type="text" name="url" value="" placeholder="商品URL">
+      <div class="row2">
+        <p class="label">アソシエイトID</p>
+        <input type="text" name="tag" value="" placeholder="アソシエイトID">
+        
+        <p class="label">画像サイズ</p>
+        <select name="size" value="250" placeholder="画像サイズ">
+          <option value="500">特大</option>
+          <option value="300">大</option>
+          <option value="250">やや大</option>
+          <option value="200" selected>中 (デフォルト)</option>
+          <option value="120">小</option>
+          <option value="64">サムネイル</option>
+        </select>
+
+        <p class="label">文字サイズ</p>
+        <select name="font_size">
+          <option value="18px">特大</option>
+          <option value="16px">大</option>
+          <option value="14px" selected>中 (デフォルト)</option>
+          <option value="12px">小</option>
+          <option value="10px">極小</option>
+        </select>
+      </div>
+
+      <button name="create">アフェリエイトリンク作成</button>
+
+      <div class="row3">
+        <input id="template_view" type="checkbox" style="display:none;"/>
+        <h2>HTMLテンプレート <label class="click-view" for="template_view">[ 表示 ]</label> <span class="template-reset">[ リセット ]</span></h2>
+        <textarea name="template" hidden></textarea>
+        <blockquote class="message" hidden>【概要】
+上記のテキストを書き換えると、表示されるバナーをカスタマイズすることができます。
+以下のパラメータを埋め込むことで、独自のバナーを作ることが可能です。
+テンプレート下部のCSSなども独自で書き換えるとデザインテイストの変更もできます。Z
+
+【埋め込みパラメータ仕様】
+{{img_size}}    : メイン画像のサイズ
+{{img_src}}     : メイン画像のURL
+{{font_size}}   : 表示するフォントのサイズ
+{{affiliate_url}} : アフェリエイトリンクのURL
+{{category}}    : 商品のメインカテゴリ
+{{unit}}        : ￥など通過の単位
+{{price}}       : 値段
+{{seller_name}} : 販売元の名称
+{{seller_url}}  : 販売元のリンクURL
+{{thumbs}}      : サムネイル画像の一覧（liタグ）
+</blockquote>
+      </div>
+
+    </section>
+  
+    <section class="output">
+      <h2>Preview</h2>
+      <section class="preview"></section>
+    </section>
+
+    <section class="output">
+      <h2>Tag</h2>
+      <textarea name="source"></textarea>
+    </section>
+
+    <section class="output">
+      <h2>Json</h2>
+      <div class="json"></div>
+    </section>
+
+    <section class="howto">
+      <h2>使い方</h2>
+      <ol>
+        <li class="small"><span style="color:red;">商品URL</span>を入力する</li>
+        <li class="small"><span style="color:red;">アソシエイトID</span>を入力する</li>
+        <li class="small"><span style="color:red;">アフェリエイトリンク作成ボタン</span>をクリック</li>
+      </ol>
+      <div class="small">※ エラーが出た場合は、商品URLを確認してください。</div>
+    </section>
+
+    <section class="about">
+      <h2>このツールについて</h2>
+      <div class="message small">このツール「Amazon Affiliate Link Maker」は、ECショップのAmazonでアフェリエイト紹介をするバナーを独自のデザインで表示することを目的に作られたツールです。
+ツールに利用は基本的に無料です。
+
+【注意事項】
+作成されたバナーに表示されている情報（金額等）は、バナー作成時のため、本サイト（Amazonサイト）による動的な変更には対応していません。
+尚、今後リアルタイム情報更新用のAPIなども検討しています。
+
+【禁止事項】
+バナー作成に数の制限はありませんが、本ツールを機会的アクセス（クローリング等）によって、使用することは禁止です。</div>
+    </section>
+
+    
+  </main>
+
+  <footer>
+    <ul class='menu'>
+      <li><a href='https://myntinc.com' target="_blank">開発会社</a></li>
+      <li><a href='https://myntinc.com/#policy' target="_blank">プライバシーポリシー</a></li>
+      <li><a href='https://myntinc.com/#kiyaku' target="_blank">利用規約</a></li>
+    </ul>
+    <div class='copy'><a href='https://myntinc.com' target="_blank">© 2017-2023 MYNT, Inc.</a></div>
+  </footer>
+
+  <form method="post" name="google-form" target="complete" action="https://docs.google.com/forms/d/e/1FAIpQLSdDpbK376yTx2Rygu3aLnxgJ0sIT4hwTzQWsujETFAdX1VhBw/formResponse" hidden>
+    <input type="text" name="entry.1832482214" data-name="id"/>
+    <input type="text" name="entry.1058766741" data-name="url"/>
+    <input type="text" name="entry.1413847706" data-name="uuid"/>
+    <input type="text" name="entry.1039236913" data-name="img-size"/>
+    <input type="text" name="entry.1534555578" data-name="font-size"/>
+    <input type="text" name="entry.1629351777" data-name="user-agent"/>
+  </form>
+
+  <iframe name="complete" hidden></iframe>
+
+</body>
+</html>

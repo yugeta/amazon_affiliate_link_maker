@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+.vscode
+
+*.bak
+
+bak/
+trash/
+data/
+plugin/
+vendor/
