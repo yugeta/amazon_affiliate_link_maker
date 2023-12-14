@@ -1,0 +1,48 @@
+{
+  "name": "Amazon affiliate link maker",
+	"short_name" : "AALM",
+	"version": "0.1.0.0",
+	"manifest_version": 3,
+
+  "description": "This tool makes Amazon affiliate link by Amazon associate.",
+
+  "icons": {
+		"16" : "contents/img/link-circle_16.png",
+		"48" : "contents/img/link-circle_48.png",
+		"128": "contents/img/link-circle_128.png"
+	},
+
+  "permissions":[
+		"tabs",
+		"storage",
+		"unlimitedStorage"
+	],
+
+  "browser_action":{
+		"matches":[
+			"http://*/*",
+			"https://*/*",
+			"file://*"
+		],
+		"default_icon":"contents/img/link-circle_48.png",
+		"default_title":"Amazon affiliate link maker",
+		"default_popup":"popup/index.html"
+	},
+
+	"content_scripts":[{
+		"matches":[
+			"http://*/*",
+			"https://*/*",
+			"file://*"
+		],
+		"js":[
+			"contents/js/main.js"
+		]
+	}],
+	
+
+
+  "action": {
+    "default_popup": "contents/index.html"
+  }
+}
