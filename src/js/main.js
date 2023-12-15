@@ -19,7 +19,6 @@ class Main{
   storage(){
     const storage_data = Data.storage_load()
     if(!storage_data){return}
-    // console.log(storage_data)
     for(const key in storage_data){
       switch(key){
         case "fontsize":
@@ -33,7 +32,6 @@ class Main{
           break
       }
     }
-    // console.log(storage_data)
   }
 }
 

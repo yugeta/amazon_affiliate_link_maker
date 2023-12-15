@@ -1,3 +1,22 @@
+@import "header.css";
+@import "control.css";
+@import "main.css";
+@import "footer.css";
+
+html,body{
+  margin:0;
+  padding:0;
+  min-width:768px;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+:root{
+  --size-header: 80px;
+  --size-footer: 80px;
+}
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -6,66 +25,31 @@
   box-sizing: border-box;
 }
 
-html,body{
-  width:500px;
-  overflow-x:hidden;
-}
-
-.row{
+h1{
+  color:white;
+  margin:0;
+  padding:0 10px;
   display:flex;
-  gap:10px;
-  flex-direction:row;
-  justify-content:center;
+  height:100%;
   align-items:center;
-  flex: 1;
-  white-space: nowrap;
+  font-size:20px;
 }
 
-.row .item{
-  /* width:300px; */
-  display:flex;
-  flex-direction:column;
-}
-.row .item *{
-  width:100%;
+h1 a{
+  color:inherit;
+  text-decoration:none;
 }
 
-.row select{
-  height:30px;
-  padding:5px 10px;
-  border:1px solid #aaa;
-  border-radius:5px;
-  margin:10px 0;
-  outline:none;
+/* h1{
+  display:none;
+} */
+
+h2{
+  font-size:16px;
+  margin-top:0;
+  margin-bottom:0;
 }
 
-.row .label{
-  font-size:0.8em;
-  display:inline-block;
-  margin:0 5px 0 0;
-  padding:0;
-}
+body > section{
 
-.row input{
-  display:block;
-  margin:10px 0;
-  width:100%;
-  padding:5px 10px;
-  border:1px solid #aaa;
-  border-radius:5px;
-  height:30px;
-  outline:none;
-}
-.tag-exists{
-  color:red;
-  border:1px solid red;
-  padding:10px;
-  margin:20px;
-  width:90%;
-}
-
-.message{
-  font-size:0.9em;
-  white-space:pre-wrap;
-  word-break:break-all;
 }

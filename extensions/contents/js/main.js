@@ -1,8 +1,40 @@
-import { Control } from "./control.js"
+import { Asset }    from "./asset.js"
+import { Event }    from "./event.js"
+import { Data }     from "./data.js"
+import { Element }  from "./element.js"
+import { Template } from "./template.js"
+import { Loading }  from "./loading/loading.js"
+
+import { Amazon }   from "./amazon.js"
 
 class Main{
   constructor(){
-    new Control()
+    new Loading()
+    new Event()
+    new Asset({
+      callback : (()=>{
+        new Template()
+        new Amazon()
+      })
+    })
+    this.storage()
+  }
+  storage(){
+    const storage_data = Data.storage_load()
+    if(!storage_data){return}
+    for(const key in storage_data){
+      switch(key){
+        case "fontsize":
+          Element.elm_fontsize.value = storage_data[key]
+          break
+        case "imagesize":
+          Element.elm_imagesize.value = storage_data[key]
+          break
+        case "tag":
+          Element.elm_tag.value = storage_data[key]
+          break
+      }
+    }
   }
 }
 
@@ -12,5 +44,5 @@ switch(document.readyState){
     new Main()
     break
   default:
-    window.addEventListener("DOMContentLoaded", ()=>{new Main()})
+    window.addEventListener("DOMContentLoaded" , (()=>new Main()))
 }

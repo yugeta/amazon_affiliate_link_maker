@@ -1,0 +1,11 @@
+header{
+  height:var(--size-header);
+  background-color:black;
+}
+
+.banner{
+  font-size:0;
+}
+.banner img{
+  width:100%;
+}
