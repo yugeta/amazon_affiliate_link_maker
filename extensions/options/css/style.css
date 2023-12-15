@@ -63,3 +63,8 @@ html,body{
   padding:10px;
   margin:20px auto;
 }
+
+.img-size,
+.font-size{
+  display:none;
+}

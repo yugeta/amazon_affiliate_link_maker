@@ -53,7 +53,6 @@ export class Data{
       fontsize  : Element.value_fontsize,
       imagesize : Element.value_imagesize,
     }
-    // console.log(data)
     const json = btoa(encodeURIComponent(JSON.stringify(data)))
     window.localStorage.setItem(Data.storage_name , json)
   }
