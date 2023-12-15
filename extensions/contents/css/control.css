@@ -1,0 +1,121 @@
+.control{
+  /* border:1px dashed black; */
+  padding:20px;
+  border-radius:5px;
+  background-color:white;
+}
+
+.control input,
+.control textarea,
+.control select{
+  /* -webkit-appearance: none;
+  appearance: none; */
+}
+
+.control input{
+  display:block;
+  margin:10px 0;
+  /* width:calc(100% - 20px); */
+  width:100%;
+  padding:5px 10px;
+  border:1px solid #aaa;
+  border-radius:5px;
+  height:30px;
+  outline:none;
+}
+
+.control button[name="create"]{
+  border:1px solid #aaa;
+  border-radius:5px;
+  display:block;
+  margin:20px auto 0;
+  padding:5px 10px;
+  cursor:pointer;
+}
+
+.control .row2{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex: 1;
+  white-space: nowrap;
+  text-align:right;
+}
+.control .row2 *{
+  width:200px;
+}
+
+.control select{
+  /* height:calc(30px + 1em - 2px); */
+  height:30px;
+  padding:5px 10px;
+  border:1px solid #aaa;
+  border-radius:5px;
+  margin:10px 0;
+  outline:none;
+}
+
+.control .label{
+  font-size:0.8em;
+  display:inline-block;
+  margin:0 5px 0 0;
+  padding:0;
+}
+
+#template_view:checked ~ textarea[name="template"],
+#template_view:checked ~ .message{
+  display:block;
+}
+.control textarea[name="template"]{
+  width:100%;
+  border:1px solid #ddd;
+  outline:0;
+  padding:10px;
+  border-radius:5px;
+  height:100px;
+  color:#aaa;
+}
+.control textarea[name="template"]:focus{
+  color:black;
+}
+.control .template-reset,
+.control .click-view{
+  font-size:0.8em;
+  cursor:pointer;
+}
+.control .template-reset:hover,
+.control .click-view:hover{
+  color:red;
+}
+.control .row3 .message{
+  border:1px solid #ddd;
+  margin:10px 0 0 0;
+  padding:10px;
+  border-radius:5px;
+  font-size:0.8em;
+  color:#888;
+  height:100px;
+  overflow-y:scroll;
+}
+.control .template-reset{
+  font
+}
+
+
+
+@media (max-width:500px){
+  .control .row2{
+    flex-direction:column;
+  }
+  .control .row2 > *{
+    width:100%;
+    margin:0;
+  }
+  .control button[name="create"]{
+    margin-top:10px;
+    width:100%;
+  }
+  .control .row2{
+    text-align:left;
+  }
+}

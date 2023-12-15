@@ -5,6 +5,8 @@ import { Element }  from "./element.js"
 import { Template } from "./template.js"
 import { Loading }  from "./loading/loading.js"
 
+import { Amazon }   from "./amazon.js"
+
 class Main{
   constructor(){
     new Loading()
@@ -12,6 +14,7 @@ class Main{
     new Asset({
       callback : (()=>{
         new Template()
+        new Amazon()
       })
     })
     this.storage()
