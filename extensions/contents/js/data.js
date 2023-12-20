@@ -25,7 +25,7 @@ export class Data{
     Data.datas.img_size = size
     Data.datas.img_src = new Thumbnail(Data.datas.thumbnails[0]).size(size)
     Data.datas.font_size  = Element.elm_fontsize.value
-    Data.datas.seller_url = new Url(datas.url).convert_path2url(Data.datas.seller_href)
+    Data.datas.seller_url = new Url(datas.url).convert_path2url(Data.datas.seller_href || "")
   }
 
   set_thumbs(){
@@ -53,7 +53,6 @@ export class Data{
       fontsize  : Element.value_fontsize,
       imagesize : Element.value_imagesize,
     }
-    // console.log(data)
     const json = btoa(encodeURIComponent(JSON.stringify(data)))
     window.localStorage.setItem(Data.storage_name , json)
   }

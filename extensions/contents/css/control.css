@@ -97,8 +97,12 @@
   height:100px;
   overflow-y:scroll;
 }
-.control .template-reset{
-  font
+
+
+.control button[name="create"],
+.control .row3,
+.control input[name="url"]{
+  display:none;
 }
 
 

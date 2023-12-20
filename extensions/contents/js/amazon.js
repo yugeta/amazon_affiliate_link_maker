@@ -24,7 +24,7 @@ export class Amazon{
       // console.log(tabs.find(e => e.active))
       const tab = tabs.find(e => e.active)
       Element.elm_url.value = tab.url
-      Element.elm_control.style.setProperty("display","none","")
+      // Element.elm_control.style.setProperty("display","none","")
       Element.elm_button.click()
     });
   }
