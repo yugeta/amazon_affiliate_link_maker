@@ -30,6 +30,8 @@ class GetCrawl{
           "datetime"    => date("Y-m-d H-i-s"),
           "seller_name" => $this->get_seller_name(),
           "seller_href" => $this->get_seller_href(),
+          "get_date"    => date("Y-m-d"),
+          "get_time"    => date("H:i:s"),
           // "seller_rate" => $this->get_seller_rate(),
         ],
         

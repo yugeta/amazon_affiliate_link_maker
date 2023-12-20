@@ -23,17 +23,18 @@ export class Data{
 
     const size = Number(Element.elm_imagesize.value)
     Data.datas.img_size = size
-    Data.datas.img_src = new Thumbnail(Data.datas.thumbnails[0]).size(size)
+    Data.datas.img_src = new Thumbnail(Data.datas.thumbnails ? Data.datas.thumbnails[0] : Data.datas.image).size(size)
     Data.datas.font_size  = Element.elm_fontsize.value
     Data.datas.seller_url = new Url(datas.url).convert_path2url(Data.datas.seller_href)
   }
 
   set_thumbs(){
+    if(!Data.datas.thumbnails){return}
     const size = Number(Element.elm_imagesize.value)
     let html = ""
     for(const thumbnail of Data.datas.thumbnails){
       const src = new Thumbnail(thumbnail).size(size)
-      html += `<li><img src="${thumbnail}" onclick="document.querySelector('.amazon-affiliate-link-maker .main-image img').src = this.getAttribute('data-src')" data-src="${src}"/></li>`
+      html += `<li><img src="${thumbnail}" onclick="this.closest('.amazon-affiliate-link-maker').querySelector('.main-image img').src = this.getAttribute('data-src')" data-src="${src}"/></li>`
     }
     Data.datas.thumbs = html
   }

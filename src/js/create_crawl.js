@@ -24,10 +24,11 @@ export class CreateCrawl{
   }
 
   res(e){
-    console.log(e.target.response)
+    // console.log(e.target.response)
     if(!e || !e.target || !e.target.response){return}
     try{
       const data = JSON.parse(e.target.response)
+console.log(data)
       this.set_json(data)
       if(data.status === "success"){
         new Data(data)
