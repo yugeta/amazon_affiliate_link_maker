@@ -5,7 +5,9 @@ import { Element }  from "./element.js"
 import { Template } from "./template.js"
 import { Loading }  from "./loading/loading.js"
 
-class Main{
+export class Main{
+  static version = "1.1.1"
+
   constructor(){
     new Loading()
     new Event()

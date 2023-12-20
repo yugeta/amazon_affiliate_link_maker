@@ -4,7 +4,7 @@
     <div class="info">
       <div class="category"><p>{{category}}</p></div>
       <a class="title" href="{{affiliate_url}}">{{title}}</a>
-      <p class="seller">販売 : <a href="{{seller_url}}" target="_blank">{{seller_name}}</a></p>
+      <p class="seller"><a href="{{seller_url}}" target="_blank">{{seller_name}}</a></p>
       <p class="price">{{unit}} {{price}} <span class="get-date">({{get_date}} 時点)</span></p>
       <p class="prime-badge" data-prime-badge="{{prime_badge}}"></p>
     </div>
@@ -60,6 +60,13 @@
 .amazon-affiliate-link-maker .info .seller{
   margin:10px 0;
 }
+.amazon-affiliate-link-maker .info .seller a:empty{
+  display:none;
+}
+.amazon-affiliate-link-maker .info .seller a::before{
+  content:"販売 : ";
+}
+
 .amazon-affiliate-link-maker .info .price{
   font-size:1.2em;
   font-weight:bold;

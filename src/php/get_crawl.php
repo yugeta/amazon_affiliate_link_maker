@@ -1,6 +1,7 @@
 <?php
 
 class GetCrawl{
+  var $varsion = "1.1.1";
   var $dom = null;
 
   function __construct($query=[]){
@@ -16,9 +17,11 @@ class GetCrawl{
     // $contents = $this->get_contents();
     try{
       $res = [
-        "status" => $this->dom ? "success" : "error",
-        "uuid"   => uniqid(),
-        "datas"  => [
+        "status"  => $this->dom ? "success" : "error",
+        "html"    => $this->dom ? $this->dom->saveHTML() : null,
+        "version" => $this->version,
+        "uuid"    => uniqid(),
+        "datas"   => [
           "url"         => $query["url"],
           "title"       => $this->get_title(),
           "asin"        => $this->get_asin(),
