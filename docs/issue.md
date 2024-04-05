@@ -1,0 +1,4 @@
+
+# 画像が取得できないアイテム
+- https://www.amazon.co.jp/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E9%96%8B%E7%99%BA201%E3%81%AE%E9%89%84%E5%89%87-%E3%82%A2%E3%83%A9%E3%83%B3%E3%83%BBM-%E3%83%87%E3%83%BC%E3%83%93%E3%82%B9/dp/4822290026/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=1D04ZX9TFWDEB&dib=eyJ2IjoiMSJ9.kXWuwx8gxDvcIfcdpTPoeg.IyI38-wPfF4pGBvqFTPiDriVzG5Ddj-FPQh4i0i1sIM&dib_tag=se&keywords=4822290026&qid=1712321008&sprefix=4822290026%2Caps%2C146&sr=8-1
+
