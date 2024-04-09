@@ -17,12 +17,24 @@ export class Code{
 
   set_code(){
     const html = new Convert(this.template).double_bracket(Data.datas)
-    Element.elm_source.value = html
+    Data.source = html
+    Element.elm_source.value = Code.except_style(html)
   }
 
   get template(){
     const tmp = Data.template_load()
     const ast = Asset.sample
     return tmp ? tmp : ast
+  }
+
+  static except_style(html){
+    if(!html){return html}
+    switch(Element.elm_exceptStyle.checked){
+      case true:
+      return html
+
+      case false:
+      return html.replace(/<style.*?>[\s\S]*?<\/style>/gim, "")
+    }
   }
 }

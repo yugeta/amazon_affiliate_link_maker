@@ -1,7 +1,7 @@
 <?php
 
 class GetCrawl{
-  var $varsion = "1.1.1";
+  var $version = "1.1.1";
   var $dom = null;
 
   function __construct($query=[]){
@@ -14,7 +14,6 @@ class GetCrawl{
     }
     $this->dom = $this->get_dom($query["url"]);
 
-    // $contents = $this->get_contents();
     try{
       $res = [
         "status"  => $this->dom ? "success" : "error",
@@ -93,7 +92,6 @@ class GetCrawl{
         if(!$class){continue;}
         $classes = explode(" ",$class);
         if(!in_array("item" , $classes)){continue;}
-        // if(in_array("videoBlockIngress" , $classes)){continue;}
         array_push($arr, $li_lists[$j]->getElementsByTagName("img")[0]->getAttribute("src"));
       }
     }
@@ -131,42 +129,6 @@ class GetCrawl{
     return $elm ? $elm->getAttribute("data-category") : null;
   }
 
-  // function get_prime_badge(){
-  //   return $this->dom->getElementById("shippingMessageInsideBuyBox_feature_div")->getElementsByTagName("div")[0]->getElementsByTagName("div")[0];
-  //   return $this->dom->getElementById("prime-badge") ? true : false;
-  // }
-
-  // function get_contents(){
-  //   $arr = [];
-  //   $ul_lists = $this->dom->getElementById("main-image-container")->getElementsByTagName("ul");
-  //   for($i=0; $i<count($ul_lists); $i++){
-  //     $li_lists = $ul_lists[$i]->getElementsByTagName("li");
-  //     for($j=0; $j<count($li_lists); $j++){
-  //       if($li_lists[$j]->getAttribute("src")){continue;}
-  //       $class = $li_lists[$j]->getAttribute("class");
-  //       if(!$class){continue;}
-  //       $classes = explode(" ",$class);
-  //       // if(!in_array("item" , $classes)){continue;}
-  //       // if(in_array("videoBlockIngress" , $classes)){continue;}
-  //       array_push($arr, $li_lists[$j]->getElementsByTagName("img")[0]->getAttribute("src"));
-  //     }
-  //   }
-  //   return $arr;
-  // }
-
-  // function get_images(){
-
-  // }
-
-  // function get_videos(){
-
-  // }
-
-  // function get_aplus(){
-  //   $aplus = $this->dom->getElementById("aplus")->textContent;
-  //   return trim($aplus);
-  // }
-
   function get_seller_name(){
     $elm = $this->dom->getElementById("sellerProfileTriggerId");
     if(!$elm){return "";}
@@ -177,15 +139,4 @@ class GetCrawl{
     if(!$elm){return "";}
     return $elm->getAttribute("href");
   }
-  // function get_seller_rate(){
-  //   $elm = $this->dom->getElementById("tbb_mr_star_dp");
-  //   return $elm;
-  //   if(!$elm){return;}
-  //   $class_name = $elm->getElementsByTagName("i")->getAttribute("class");
-  //   return $class_name;
-  //   preg_match("/a-star-brand-mini-([0-9]\-+?) /" , $class_name , $match);
-  //   return $match[1];
-  // }
-  
-
 }

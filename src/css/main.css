@@ -70,3 +70,13 @@ textarea[name="source"]{
   font-size:0.9em;
 }
 
+.except-style{
+  cursor:pointer;
+  font-size:0.9em;
+  display:flex;
+  align-items:center;
+  margin:5px 0;
+}
+.except-style [type="checkbox"]{
+  margin-right:10px;
+}
