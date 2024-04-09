@@ -72,8 +72,8 @@ textarea[name="source"]{
 
 .except-style{
   cursor:pointer;
-  font-size:0.9em;
-  display:flex;
+  font-size:0.8em;
+  display:inline-flex;
   align-items:center;
   margin:5px 0;
 }
