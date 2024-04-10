@@ -22,6 +22,9 @@ export class Event{
     if(Element.elm_tag){
       Element.elm_tag.addEventListener("input" , this.input_tag.bind(this))
     }
+    if(Element.elm_exceptStyle){
+      Element.elm_exceptStyle.addEventListener("change", this.set_except_style.bind(this))
+    }
   }
 
   change_imagesize(e){
@@ -50,5 +53,10 @@ export class Event{
 
   click_create(){
     new CreateCrawl()
+  }
+
+  set_except_style(e){
+    if(!Data.source){return}
+    Element.elm_source.value = Code.except_style(Data.source)
   }
 }

@@ -57,4 +57,8 @@ export class Element{
   static get elm_control(){
     return document.querySelector(".control")
   }
+
+  static get elm_exceptStyle(){
+    return document.querySelector(`label.except-style input[type="checkbox"]`)
+  }
 }
