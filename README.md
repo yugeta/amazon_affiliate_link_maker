@@ -10,4 +10,5 @@ Author : Yugeta.Koji
 
 
 # url
-- https://amazon.affiliate.myntinc.com/
+- [old] https://amazon.affiliate.myntinc.com/
+- [2026-02-23] https://yugeta.github.io/amazon_affiliate_link_maker/src/
