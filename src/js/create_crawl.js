@@ -31,7 +31,6 @@ export class CreateCrawl{
       }
     }
     catch(err){
-      console.warn(e)
       console.warn(err)
       alert("データが正常に取得できません。")
     }
