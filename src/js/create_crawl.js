@@ -11,23 +11,18 @@ export class CreateCrawl{
     this.send()
   }
 
-  send(){
+  async send(){
     const query = {
-      mode     : "get_info",
-      url     : Element.elm_url.value,
-    }
-    const xhr = new XMLHttpRequest()
-    xhr.open('POST' , "main.php" , true)
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
-    xhr.onload = this.res.bind(this)
-    xhr.send(Object.entries(query).map(([k, v])=>`${encodeURIComponent(k)}=${encodeURIComponent(v)}`).join('&'))
+      url: Element.elm_url.value,
+    };
+    const url = "https://script.google.com/macros/s/AKfycbxw3yoOQNJpnE9M-wDGD06XEi2MmfMFwVhrOUcNG_JSEEs7AIDh0De3S1EYaEJT5Cqp/exec?url="+ encodeURIComponent(Element.elm_url.value)
+    const res = await fetch(url).then(e => e.json())
+    this.res(res)
   }
 
-  res(e){
-    if(!e || !e.target || !e.target.response){return}
+  res(data){
+    console.log("response-data", data)
     try{
-      const data = JSON.parse(e.target.response)
-      this.set_json(data)
       if(data.status === "success"){
         new Data(data)
       }
@@ -36,8 +31,8 @@ export class CreateCrawl{
       }
     }
     catch(err){
-      console.log(e)
-      console.log(err)
+      console.warn(e)
+      console.warn(err)
       alert("データが正常に取得できません。")
     }
     new Preview()
@@ -47,8 +42,10 @@ export class CreateCrawl{
     this.finish()
   }
 
-  set_json(data){
+  set_json(json){
+    const data = JSON.parse(json)
     Element.elm_json.textContent = JSON.stringify(data , null , "  ")
+    return data
   }
 
   finish(){
