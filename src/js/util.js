@@ -1,4 +1,31 @@
-export class Element{
+export class Util{
+  // Instance getters
+  get amazon_url(){
+    return this.elm_amazon_url.value
+  }
+  get elm_amazon_url(){
+    return document.querySelector(`input[name="url"]`)
+  }
+  get create_button(){
+    return document.querySelector(`button[name="create"]`)
+  }
+  get elm_item(){
+    return document.querySelector(`input[name="item"]`)
+  }
+  get elm_partner(){
+    return document.querySelector(`input[name="partner"]`)
+  }
+  get elm_access(){
+    return document.querySelector(`input[name="access"]`)
+  }
+  get elm_secret(){
+    return document.querySelector(`input[name="secret"]`)
+  }
+  get crawl_engine(){
+    return document.forms.control.crawl_engine.value
+  }
+
+  // Static getters (from element.js)
   static get elm_button(){
     return document.querySelector(`button[name="create"]`)
   }
@@ -53,7 +80,13 @@ export class Element{
   static get elm_json(){
     return document.querySelector(`.json`)
   }
+  static get elm_control(){
+    return document.querySelector(".control")
+  }
   static get elm_exceptStyle(){
     return document.querySelector(`label.except-style input[type="checkbox"]`)
   }
 }
+
+// Backward compatibility alias
+export const Element = Util;

@@ -1,6 +1,6 @@
 import { Asset }     from "./asset.js"
 import { Convert }   from "./convert.js"
-import { Element }   from "./element.js"
+import { Util as Element } from "./util.js"
 import { Data }      from "./data.js"
 
 export class Preview{

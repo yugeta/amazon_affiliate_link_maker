@@ -1,15 +1,19 @@
-import { Element }   from "./element.js"
-import { Thumbnail } from "./thumbnail.js"
-import { Url }       from "./url.js"
+import { Util as Element } from "./util.js"
+import { Thumbnail }       from "./thumbnail.js"
+import { Url }             from "./url.js"
+import { AmazonData }      from "./amazon_data.js"
 
 export class Data{
   static datas = {}
   constructor(options){
     this.options = options || {}
+  }
+
+  async init(){
     Data.status = this.options.status
-    Data.datas  = this.options.datas
+    Data.datas  = await new AmazonData(this.options).data()
     Data.uuid   = this.options.uuid
-    Data.set_value(this.options.datas)
+    Data.set_value(Data.datas)
     this.set_thumbs()
   }
 

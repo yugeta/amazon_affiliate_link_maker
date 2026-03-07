@@ -1,7 +1,7 @@
 import { Asset }     from "./asset.js"
 import { Convert }   from "./convert.js"
 import { Data }      from "./data.js"
-import { Element }   from "./element.js"
+import { Util as Element } from "./util.js"
 
 export class Code{
   constructor(options){

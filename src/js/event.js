@@ -1,8 +1,9 @@
-import { Element }     from "./element.js"
+import { Util as Element } from "./util.js"
 import { CreateCrawl } from "./create_crawl.js"
 import { Data }        from "./data.js"
 import { Code }        from "./code.js"
 import { Preview }     from "./preview.js"
+import { AmazonData }  from "./amazon_data.js"
 
 export class Event{
   constructor(){
@@ -51,8 +52,15 @@ export class Event{
     Data.storage_save()
   }
 
-  click_create(){
-    new CreateCrawl()
+  async click_create(){
+    const res = await new CreateCrawl().init()
+    // const datas = res && res.status === "success" ? new AmazonData(res).data : null
+    await new Data(res).init()
+    console.log(Data.datas)
+    // Data.status = res.status
+    // Data.datas = datas
+    new Code()
+    new Preview()
   }
 
   set_except_style(e){

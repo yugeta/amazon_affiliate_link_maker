@@ -98,9 +98,21 @@
   overflow-y:scroll;
 }
 .control .template-reset{
-  font
+  
 }
 
+.control .crawl-engine-select{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+}
+
+.control .crawl-engine-select *{
+  display:flex;
+  gap:0.5em;
+  align-items:center;
+}
 
 
 @media (max-width:500px){
