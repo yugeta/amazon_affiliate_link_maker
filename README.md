@@ -10,7 +10,8 @@ Author : Yugeta.Koji
 
 
 # url
-<<<<<<< Updated upstream
+https://yugeta.github.io/amazon_affiliate_link_maker/src/
+<!-- <<<<<<< Updated upstream
 - [PHP版] https://amazon.affiliate.myntinc.com/
 - [GAS版] https://yugeta.github.io/amazon_affiliate_link_maker/src/
 =======
@@ -19,4 +20,4 @@ Author : Yugeta.Koji
 # DOM仕様 : Amazonサイトの取得ルール
 - 
 
->>>>>>> Stashed changes
+>>>>>>> Stashed changes -->
