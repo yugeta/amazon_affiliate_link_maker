@@ -54,6 +54,14 @@ export class Event{
 
   async click_create(){
     const res = await new CreateCrawl().init()
+    if(!res || res.status !== "success"){
+      const message = res && res.message
+        ? res.message
+        : "データ取得に失敗しました。時間をおいて再度お試しください。"
+      console.warn("create_error", res)
+      alert(message)
+      return
+    }
     // const datas = res && res.status === "success" ? new AmazonData(res).data : null
     await new Data(res).init()
     console.log(Data.datas)

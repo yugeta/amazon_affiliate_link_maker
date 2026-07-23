@@ -39,13 +39,24 @@ export class CreateApi{
   }
 
   url2item(url){
-    const queries = Object.fromEntries(new URLSearchParams(url).entries())
-    if(queries.pd_rd_i){
-      return queries.pd_rd_i
+    if(!url){return null}
+
+    let parsedUrl
+    try{
+      parsedUrl = new URL(url)
     }
-    if(queries.pf_rd_r){
-      return queries.pf_rd_r
-    } 
+    catch(err){
+      return null
+    }
+
+    const queries = Object.fromEntries(parsedUrl.searchParams.entries())
+    if(queries.pd_rd_i){return queries.pd_rd_i}
+    if(queries.pf_rd_r){return queries.pf_rd_r}
+    if(queries.asin){return queries.asin}
+
+    const path = parsedUrl.pathname || ""
+    const match = path.match(/\/(dp|gp\/product|gp\/aw\/d|gp\/offer-listing)\/([A-Z0-9]{10})(?:[\/?]|$)/i)
+    return match ? match[2].toUpperCase() : null
   }
 
   res(mode , e){

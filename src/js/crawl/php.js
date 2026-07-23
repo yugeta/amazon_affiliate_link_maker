@@ -59,7 +59,24 @@ export class Php extends Util{
       headers,
       body: this.body
     });
+    const rawText = await response.text();
 
-    return await response.json();
+    if(!response.ok){
+      const message = rawText
+        ? `クロールAPIエラー: HTTP ${response.status} / ${rawText.slice(0, 200)}`
+        : `クロールAPIエラー: HTTP ${response.status}`
+      throw new Error(message)
+    }
+
+    if(!rawText || !rawText.trim()){
+      throw new Error("クロールAPIから空のレスポンスが返されました。")
+    }
+
+    try{
+      return JSON.parse(rawText)
+    }
+    catch(err){
+      throw new Error(`クロールAPIのレスポンスがJSON形式ではありません: ${rawText.slice(0, 200)}`)
+    }
   }
 }

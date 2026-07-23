@@ -19,7 +19,12 @@ export class CreateCrawl extends Util{
       return await this.proc()
     }
     catch(err){
-      alert(err)
+      const message = err && err.message ? err.message : String(err)
+      return {
+        status  : "error",
+        message : message,
+        html    : "",
+      }
     }
   }
 
