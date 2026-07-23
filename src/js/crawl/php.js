@@ -54,29 +54,75 @@ export class Php extends Util{
       "X-SIGNATURE": signature
     };
 
-    const response = await fetch(this.setting.endpoint, {
-      method: "POST",
-      headers,
-      body: this.body
-    });
-    const rawText = await response.text();
+    try{
+      const response = await fetch(this.setting.endpoint, {
+        method: "POST",
+        headers,
+        body: this.body
+      });
+      const rawText = await response.text();
+
+      if(!response.ok){
+        const message = rawText
+          ? `クロールAPIエラー: HTTP ${response.status} / ${rawText.slice(0, 200)}`
+          : `クロールAPIエラー: HTTP ${response.status}`
+        console.warn(message)
+        return await this.sendFallback()
+      }
+
+      if(!rawText || !rawText.trim()){
+        console.warn("クロールAPIから空のレスポンスが返されました。ローカルAPIにフォールバックします。")
+        return await this.sendFallback()
+      }
+
+      try{
+        return JSON.parse(rawText)
+      }
+      catch(err){
+        console.warn(`クロールAPIのレスポンスがJSON形式ではありません: ${rawText.slice(0, 200)}`)
+        return await this.sendFallback()
+      }
+    }
+    catch(err){
+      console.warn("クロールAPI通信に失敗しました。ローカルAPIにフォールバックします。", err)
+      return await this.sendFallback()
+    }
+  }
+
+  async sendFallback(){
+    const query = {
+      mode : "get_info",
+      url  : this.amazon_url,
+    }
+
+    const response = await fetch("main.php", {
+      method : "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: Object.entries(query)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+        .join("&"),
+    })
+
+    const rawText = await response.text()
 
     if(!response.ok){
       const message = rawText
-        ? `クロールAPIエラー: HTTP ${response.status} / ${rawText.slice(0, 200)}`
-        : `クロールAPIエラー: HTTP ${response.status}`
+        ? `ローカルAPIエラー: HTTP ${response.status} / ${rawText.slice(0, 200)}`
+        : `ローカルAPIエラー: HTTP ${response.status}`
       throw new Error(message)
     }
 
     if(!rawText || !rawText.trim()){
-      throw new Error("クロールAPIから空のレスポンスが返されました。")
+      throw new Error("クロールAPI・ローカルAPIの両方が空レスポンスでした。")
     }
 
     try{
       return JSON.parse(rawText)
     }
     catch(err){
-      throw new Error(`クロールAPIのレスポンスがJSON形式ではありません: ${rawText.slice(0, 200)}`)
+      throw new Error(`ローカルAPIのレスポンスがJSON形式ではありません: ${rawText.slice(0, 200)}`)
     }
   }
 }
