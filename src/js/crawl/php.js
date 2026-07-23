@@ -99,10 +99,10 @@ export class Php extends Util{
       .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
       .join("&")
 
-    const endpoints = [
-      "main.php",
-      "https://amazon.affiliate.myntinc.com/main.php",
-    ]
+    const isStaticHost = typeof location !== "undefined" && /github\.io$/i.test(location.hostname)
+    const endpoints = isStaticHost
+      ? ["https://amazon.affiliate.myntinc.com/main.php"]
+      : ["main.php", "https://amazon.affiliate.myntinc.com/main.php"]
 
     let lastError = null
 

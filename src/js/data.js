@@ -11,13 +11,23 @@ export class Data{
 
   async init(){
     Data.status = this.options.status
-    Data.datas  = await new AmazonData(this.options).data()
+    if(this.options.datas && typeof this.options.datas === "object"){
+      Data.datas = this.options.datas
+    }
+    else if(this.options.html){
+      Data.datas = await new AmazonData(this.options).data()
+    }
+    else{
+      throw new Error("データ形式が不正です。")
+    }
     Data.uuid   = this.options.uuid
     Data.set_value(Data.datas)
     this.set_thumbs()
   }
 
   static set_value(datas){
+    datas = datas || Data.datas
+
     if(datas && datas.price_num){
       Data.datas.price           = datas.price_num ? Number(datas.price_num).toLocaleString() : null
     }
@@ -27,16 +37,26 @@ export class Data{
 
     const size = Number(Element.elm_imagesize.value)
     Data.datas.img_size = size
-    Data.datas.img_src = new Thumbnail(Data.datas.thumbnails ? Data.datas.thumbnails[0] : Data.datas.image).size(size)
+    const thumbSrc = Array.isArray(Data.datas.thumbnails) && Data.datas.thumbnails.length
+      ? Data.datas.thumbnails[0]
+      : Data.datas.image
+    Data.datas.img_src = thumbSrc ? new Thumbnail(thumbSrc).size(size) : ""
     Data.datas.font_size  = Element.elm_fontsize.value
-    Data.datas.seller_url = new Url(datas.url).convert_path2url(Data.datas.seller_href)
+    const sellerHref = Data.datas.seller_href || Data.datas.seller_html
+    Data.datas.seller_url = datas && datas.url && sellerHref
+      ? new Url(datas.url).convert_path2url(sellerHref)
+      : null
   }
 
   set_thumbs(){
-    if(!Data.datas.thumbnails){return}
+    if(!Array.isArray(Data.datas.thumbnails) || !Data.datas.thumbnails.length){
+      Data.datas.thumbs = ""
+      return
+    }
     const size = Number(Element.elm_imagesize.value)
     let html = ""
     for(const thumbnail of Data.datas.thumbnails){
+      if(!thumbnail){continue}
       const src = new Thumbnail(thumbnail).size(size)
       html += `<li><img src="${thumbnail}" onclick="this.closest('.amazon-affiliate-link-maker').querySelector('.main-image img').src = this.getAttribute('data-src')" data-src="${src}"/></li>`
     }
