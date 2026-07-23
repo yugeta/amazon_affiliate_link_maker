@@ -95,34 +95,58 @@ export class Php extends Util{
       url  : this.amazon_url,
     }
 
-    const response = await fetch("main.php", {
-      method : "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: Object.entries(query)
-        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
-        .join("&"),
-    })
+    const body = Object.entries(query)
+      .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+      .join("&")
 
-    const rawText = await response.text()
+    const endpoints = [
+      "main.php",
+      "https://amazon.affiliate.myntinc.com/main.php",
+    ]
 
-    if(!response.ok){
-      const message = rawText
-        ? `ローカルAPIエラー: HTTP ${response.status} / ${rawText.slice(0, 200)}`
-        : `ローカルAPIエラー: HTTP ${response.status}`
-      throw new Error(message)
+    let lastError = null
+
+    for(const endpoint of endpoints){
+      try{
+        const response = await fetch(endpoint, {
+          method : "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body,
+        })
+
+        const rawText = await response.text()
+
+        if(!response.ok){
+          const message = rawText
+            ? `フォールバックAPIエラー(${endpoint}): HTTP ${response.status} / ${rawText.slice(0, 200)}`
+            : `フォールバックAPIエラー(${endpoint}): HTTP ${response.status}`
+          lastError = new Error(message)
+          continue
+        }
+
+        if(!rawText || !rawText.trim()){
+          lastError = new Error(`フォールバックAPIが空レスポンスです (${endpoint})`)
+          continue
+        }
+
+        try{
+          return JSON.parse(rawText)
+        }
+        catch(err){
+          lastError = new Error(`フォールバックAPIのレスポンスがJSON形式ではありません (${endpoint}): ${rawText.slice(0, 200)}`)
+          continue
+        }
+      }
+      catch(err){
+        lastError = err
+      }
     }
 
-    if(!rawText || !rawText.trim()){
-      throw new Error("クロールAPI・ローカルAPIの両方が空レスポンスでした。")
+    if(lastError){
+      throw lastError
     }
-
-    try{
-      return JSON.parse(rawText)
-    }
-    catch(err){
-      throw new Error(`ローカルAPIのレスポンスがJSON形式ではありません: ${rawText.slice(0, 200)}`)
-    }
+    throw new Error("フォールバックAPI呼び出しに失敗しました。")
   }
 }
