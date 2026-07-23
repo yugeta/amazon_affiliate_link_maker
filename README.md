@@ -22,14 +22,3 @@ https://yugeta.github.io/amazon_affiliate_link_maker/src/
 
 >>>>>>> Stashed changes -->
 
-# extensions 同期（最小構成）
-- 目的: src の共有ファイルだけを extensions/contents に反映する。
-- 方針: 拡張機能専用のファイル（main/event/create_crawl/amazon/element など）は上書きしない。
-
-実行手順:
-1. `chmod +x scripts/sync_src_to_extensions.sh`
-2. `./scripts/sync_src_to_extensions.sh`
-
-補足:
-- 同期対象は `scripts/sync_src_to_extensions.sh` 内の `SYNC_FILES` で管理。
-- 将来、共通化を進める場合はこの配列に追加していく。
